@@ -1,6 +1,6 @@
-// Project Title
+// Project Title: P5JS PAINT
 // Your Name: savannah roslan
-// Date
+// Date 01/29/26
 //
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
@@ -8,7 +8,7 @@
 
 //Declare variables here
 let brushColor;
-
+let brushSize;
 //function setup()
 
 
@@ -17,8 +17,8 @@ function setup() {
   //This function get run once at the start of the program
   createCanvas(400, 400);
   background(240);
-  brushColor = color(0,0,0);
-
+  brushColor = color(0, 0, 0);
+  brushSize = 2;
   //initialize brushColor
 
 }
@@ -44,32 +44,82 @@ function drawColorPicker() {
 
 }
 
+//color changer
 function changeColor() {
-} if (mouseY < 20 && mouseIsPressed) {
-  if (mouseX < 40) {
-    brushColor = 'black';
+if (mouseY < 20 && mouseIsPressed) {
+  if (mouseX < 50) {
+    brushColor = color(0, 0, 0);
   }
-  else if (mouseX < 80) {
-    brushColor = 'white';
+  else if(mouseX < 100 && mouseIsPressed) {
+    brushColor = color(255, 255, 255);
   }
-  else if (mouseX < 120) {
-    brushColor = 'red';
+  else if(mouseX < 150) {
+  brushColor = color(255,0,0);
   }
-  else if (mouseX < 160) {
-    brushColor = ('orange');
+  else if (mouseX < 200) {
+  brushColor = color(255,165,0);
   }
-
+  else if(mouseX < 250){
+  brushColor = color(255,255,0);
+  }
+   else if(mouseX < 300){
+    brushColor = color(0,255,0);
+  }
+  else if(mouseX < 350){
+    brushColor = color (0,0,255);
+}
+else if(mouseX < 400){
+  brushColor = color(128,0,128);
+}
+}
+if(mouseX > 5 && mouseX < 45){
+  if(mouseY > 380 && mouseY < 395){
+  brushColor = color(240);
+ }
+}
 }
 
+//eraser & Brush Stroke
+function keyPressed(){
+  if(key === "c"){
+  background(240);
+  }
+  if(key === "1"){
+    brushSize = 1;
+  }
+  if(key === "2"){
+    brushSize = 2;
+  }
+  if(key === "3"){
+    brushSize = 3;
+  }
+  if (key === "4"){
+    brushSize = 4;
+  }
+  if (key === "5"){
+    brushSize = 5;
+  }
+  if (key === "6"){
+    brushSize = 6;
+  }
+  if (key === "7"){
+    brushSize = 7;
+  }
+  if (key === "8"){
+    brushSize = 8;
+  }
+  if (key === "9"){
+    brushSize = 9;
+  }
+  if (key === "0"){
+    brushSize = 10;
+  }
+}
 
-
-//if (mouseY < 20 && mouseIsPressed) {
-
-//brushColor = 'black';
-//}
-
-
-
+function drawEraser(){
+  fill('pink');
+  rect(5,380,40,15);
+}
 
 function draw() {
   //This loop gets run over and over again
@@ -79,15 +129,19 @@ function draw() {
   //call the drawColorPicker function
   //function drawColorPicker() {
 
-
+  changeColor();
   drawColorPicker();
+  drawEraser();
 
   if (mouseIsPressed) {
-    stroke(150, 0, 0);
-    strokeWeight(2);
+    stroke(brushColor);
+    strokeWeight(brushSize);
     line(brushX, brushY, pmouseX, pmouseY);
   }
   // 	text(mouseX + ", " + mouseY, 350, 350);
 }
+
+
+
 
 
